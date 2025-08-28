@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Song Popularity Predictor</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+            margin-top: 50px; 
+            background: #f9f9f9;
+        }
+        h1 { color: #333; }
+        form { 
+            background: white; 
+            display: inline-block; 
+            padding: 20px; 
+            border-radius: 10px; 
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+        }
+        label { font-weight: bold; }
+        input, select { 
+            margin: 10px; 
+            padding: 8px; 
+            width: 200px; 
+            border-radius: 5px; 
+            border: 1px solid #ccc; 
+        }
+        button { 
+            padding: 10px 20px; 
+            background: #4CAF50; 
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            font-size: 16px;
+        }
+        button:hover { background: #45a049; }
+        .result { 
+            margin-top: 20px; 
+            font-size: 20px; 
+            font-weight: bold; 
+            color: #222;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎶 Song Popularity Predictor 🎶</h1>
+    <form method="POST" action="/predict">
+        
+        <label>Danceability (0.0 - 1.0):</label><br>
+        <input type="number" step="0.01" min="0" max="1" name="danceability" placeholder="e.g. 0.65" required><br>
+
+        <label>Energy (0.0 - 1.0):</label><br>
+        <input type="number" step="0.01" min="0" max="1" name="energy" placeholder="e.g. 0.80" required><br>
+
+        <label>Explicit Lyrics:</label><br>
+        <select name="explicit" required>
+            <option value="">-- Select --</option>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select><br>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction %}
+        <div class="result">
+            Prediction: {{ prediction }}
+        </div>
+    {% endif %}
+</body>
+</html>
